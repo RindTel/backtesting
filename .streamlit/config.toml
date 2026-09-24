@@ -1,0 +1,53 @@
+# Design system: see DESIGN.md. Near-black, white/grey type, one signal red for meaning only.
+
+[server]
+headless = true
+address = "localhost"  # local tool: not reachable from the network. Demo over LAN: --server.address 0.0.0.0
+enableStaticServing = true  # serves static/fonts (Geist, SIL OFL 1.1)
+
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"
+
+[theme]
+base = "dark"
+backgroundColor = "#0a0a0a"
+secondaryBackgroundColor = "#141414"
+textColor = "#ededed"
+# Mid grey, not white: Streamlit draws white text/icons ON the primary colour (multiselect
+# tags, date-picker selection, checkmarks, toggle knobs). Primary buttons stay white via ui.css.
+primaryColor = "#6e6e6e"
+linkColor = "#ededed"
+redColor = "#f0544f"
+greenColor = "#a1a1a1"
+borderColor = "#222222"
+dataframeBorderColor = "#1c1c1c"
+dataframeHeaderBackgroundColor = "#0f0f0f"
+showWidgetBorder = true
+baseRadius = "6px"
+buttonRadius = "6px"
+font = "Geist, ui-sans-serif, system-ui, sans-serif"
+codeFont = "Geist Mono, ui-monospace, monospace"
+headingFont = "Geist, ui-sans-serif, system-ui, sans-serif"
+headingFontWeights = [600, 600, 600, 600, 600, 600]
+headingFontSizes = ["1.75rem", "1.25rem", "1.05rem", "1rem", "0.95rem", "0.9rem"]
+baseFontSize = 15
+metricValueFontSize = "2rem"
+metricValueFontWeight = 500
+codeBackgroundColor = "#111111"
+chartCategoricalColors = ["#ededed", "#f0544f", "#6e6e6e", "#a1a1a1", "#3a3a3a"]
+chartSequentialColors = ["#1a1a1a", "#2c2c2c", "#404040", "#565656", "#6e6e6e", "#888888", "#a1a1a1", "#bababa", "#d4d4d4", "#ededed"]
+
+[[theme.fontFaces]]
+family = "Geist"
+url = "app/static/fonts/Geist-Variable.woff2"
+weight = "100 900"
+style = "normal"
+
+[[theme.fontFaces]]
+family = "Geist Mono"
+url = "app/static/fonts/GeistMono-Variable.woff2"
+weight = "100 900"
+style = "normal"

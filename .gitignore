@@ -1,0 +1,29 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- Editors / OS ---
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# --- MLflow (local experiment store) ---
+mlruns/
+mlartifacts/
+mlflow.db
+
+# --- Data ---
+# Ignore all data contents, but keep the folder structure (.gitkeep files)
+# and the small committed sample dataset used by tests and demos.
+data/**
+!data/**/
+!data/**/.gitkeep
+!data/sample/**

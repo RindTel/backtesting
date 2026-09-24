@@ -1,0 +1,8 @@
+matplotlib==3.11.2
+mlflow==3.16.1
+polars==1.44.2
+pyarrow==25.0.1
+pytest==9.1.1
+requests==2.34.2
+ruff==0.16.8
+streamlit==1.64.0

@@ -1,0 +1,87 @@
+/* Backtester UI: near-black workspace. Tokens mirror .streamlit/config.toml; see DESIGN.md. */
+:root {
+  --bg: #0a0a0a;
+  --panel: #141414;
+  --line: #222222;
+  --text: #ededed;
+  --text-2: #a1a1a1;
+  --text-3: #6e6e6e;
+  --signal: #f0544f;
+  --radius: 6px;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --mono: "Geist Mono", ui-monospace, monospace;
+}
+
+/* --- Browser surfaces ------------------------------------------------------ */
+::selection { background: var(--text); color: var(--bg); }
+html { caret-color: var(--text); scrollbar-color: #2a2a2a var(--bg); scrollbar-width: thin; }
+:focus-visible { outline: 2px solid var(--text) !important; outline-offset: 2px; }
+
+/* --- Chrome ------------------------------------------------------------------ */
+[data-testid="stDecoration"], footer { display: none !important; }
+[data-testid="stHeader"] { background: color-mix(in srgb, var(--bg) 88%, transparent); border-bottom: 1px solid var(--line); }
+[data-testid="stMainBlockContainer"] { padding-top: 4.25rem; padding-bottom: 3rem; max-width: 1400px; }
+
+/* --- Type -------------------------------------------------------------------- */
+h1, h2, h3 { letter-spacing: -0.02em; text-wrap: balance; }
+h1 { margin-bottom: 0.25rem !important; }
+[data-testid="stCaptionContainer"], [data-testid="stWidgetLabel"] p { color: var(--text-2) !important; }
+code { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* --- KPI strip: hairlines between values, no cards ---------------------------- */
+[data-testid="stMetric"] {
+  padding: 0.25rem 0 0.25rem 1rem;
+  border-left: 1px solid var(--line);
+}
+[data-testid="stMetricLabel"] p { color: var(--text-2) !important; font-size: 0.8rem !important; }
+[data-testid="stMetricValue"] {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+}
+[data-testid="stMetricDelta"] { font-family: var(--mono); font-size: 0.78rem; }
+[class*="st-key-neg-"] [data-testid="stMetricValue"] { color: var(--signal); }
+
+/* --- Controls ---------------------------------------------------------------- */
+[data-testid="stBaseButton-primary"] {
+  background: var(--text) !important;
+  color: var(--bg) !important;
+  border-color: var(--text) !important;
+  font-weight: 600;
+}
+[data-testid="stBaseButton-primary"] p { color: var(--bg) !important; }
+[data-testid="stBaseButton-secondary"] { background: transparent !important; }
+button[kind] { transition: transform 160ms var(--ease-out), background-color 150ms ease, border-color 150ms ease; }
+button[kind]:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) {
+  [data-testid="stBaseButton-primary"]:hover { background: #ffffff !important; }
+  [data-testid="stBaseButton-secondary"]:hover { border-color: var(--text-2) !important; }
+}
+
+/* The engine switch: the broken option carries the signal colour. */
+.st-key-engine [role="radiogroup"] label:last-of-type p { color: var(--signal) !important; }
+
+/* Data tables: tabular numerals. */
+[data-testid="stDataFrame"] { font-variant-numeric: tabular-nums; }
+
+/* --- Leak-test face-off -------------------------------------------------------- */
+.faceoff { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 0.5rem 0 1.25rem; }
+.faceoff > div { padding: 1.25rem 0 1.25rem 1.25rem; }
+.faceoff > div + div { border-left: 1px solid var(--line); }
+.faceoff .who { color: var(--text-2); font-size: 0.85rem; }
+.faceoff .big { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.05; margin: 0.35rem 0; }
+.faceoff .sub { color: var(--text-2); font-family: var(--mono); font-size: 0.85rem; }
+.faceoff .broken .big { color: var(--signal); }
+@media (max-width: 640px) {
+  .faceoff { grid-template-columns: 1fr; }
+  .faceoff > div + div { border-left: 0; border-top: 1px solid var(--line); }
+}
+
+/* Plain banner line (sweep pick, data provenance). */
+.note { color: var(--text-2); font-size: 0.92rem; margin: 0.25rem 0 0.75rem; }
+.note strong { color: var(--text); font-weight: 600; }
+.note .num { font-family: var(--mono); color: var(--text); }
+
+@media (prefers-reduced-motion: reduce) {
+  button[kind], button[kind]:active { transition: none; transform: none; }
+}

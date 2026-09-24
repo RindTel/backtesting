@@ -1,0 +1,8 @@
+#!/bin/sh
+# Blocks committing Yahoo Finance data. Enable once per clone:
+#   git config core.hooksPath .githooks
+# CI runs the same check on every push, so skipping this hook won't get data through.
+py=.venv/bin/python
+[ -x "$py" ] || py=python3
+# NUL-separated so paths with spaces stay intact; -r skips the run when nothing is staged.
+git diff --cached --name-only --diff-filter=ACMR -z | xargs -0 -r "$py" scripts/check_data_provenance.py

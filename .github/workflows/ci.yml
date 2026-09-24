@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python scripts/check_data_provenance.py
+      - run: ruff check .
+      - run: ruff format --check .
+      # Offline suite: network tests hit Binance Vision and would make CI flaky.
+      - run: pytest -m "not network"
+        env:
+          MLFLOW_DISABLE_AGENT_HINT: "1"
